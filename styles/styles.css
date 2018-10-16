@@ -19,10 +19,31 @@ body {
     align-items: center;
 }
 
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+
+ input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:2px solid white;
+}
+input[type='checkbox']:checked {
+    background: blue;
+}
+ 
+
 .input {
     margin-top: 5%;
     background-color: #3b3b3b;
     color: yellow;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid yellow;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .main-title {
@@ -56,6 +77,7 @@ body {
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 3%;
+    align-items: center;
 }
 
 .form-1-container {
@@ -81,19 +103,21 @@ body {
 }
 
 button {
-    height: 30px;
+    height: 40px;
     font-size: 1em;
     background-color: yellow;
     border-radius: 10px;
     border: 1px solid black;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
 }
 
-/* button:hover {
+button:hover {
     transition: 0.5s;
     border-radius: 1px solid  yellow;
     color: yellow;
-    background-color: black;
-} */
+    background-color: #3b3b3b;
+}
 
 textarea {
     height: 350px;
