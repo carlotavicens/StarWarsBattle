@@ -1,0 +1,135 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-image: url('https://media.giphy.com/media/2C8Kf24dnrYNW/giphy.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: yellow;
+
+}
+
+.input-form-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-form-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input {
+    margin-top: 5%;
+    background-color: #3b3b3b;
+    color: yellow;
+}
+
+.main-title {
+    font-size: 2.5em;
+    color: yellow;
+    overflow: hidden;
+	transform-origin: 50% 100%;
+    transform: perspective(300px) rotateX(25deg);
+}
+
+.container {
+    margin-top: 5%;
+    width: 100%;
+}
+
+.main-aligner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.info {
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 3%;
+}
+
+.form-1-container {
+    margin-right: 5%;
+}
+
+.form-2-container {
+    
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 5%;
+}
+
+.history-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+}
+
+button {
+    height: 30px;
+    font-size: 1em;
+    background-color: yellow;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+/* button:hover {
+    transition: 0.5s;
+    border-radius: 1px solid  yellow;
+    color: yellow;
+    background-color: black;
+} */
+
+textarea {
+    height: 350px;
+    width: 350px;
+    outline: none;
+    border-radius: 10px;
+    background-color: #3b3b3b;
+}
+
+header {
+    margin-bottom: 3%;
+}
+
+.button-shoot {
+    background-color: red;
+    color: white;
+    border-radius: white;
+}
+
+.button-shoot:hover {
+    transition: 0.5s;
+    background-color: white;
+    color: red;
+    border-radius: white;
+}
+
+.button-repair {
+    background-color: green;
+    color: white;
+    border-radius: green;
+}
+
+.button-repair:hover {
+    transition: 0.5s;
+    background-color: white;
+    color: green;
+    border-radius: white;
+}
+
