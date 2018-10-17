@@ -104,8 +104,16 @@ class TIE_Fighter extends Casa_estelar{
             }
     }
 
-    public function escollir_accio(){
+    public function escollir_accio($enemy){
+        $randomACtion = rand(0,1);
 
+        if ($randomACtion == 1 ){ 
+            $this->reparar();
+            echo "reparar";
+        }else{
+            $this->disparar($enemy);
+            echo "disparar";
+        }
     }
 
 }
@@ -114,7 +122,7 @@ $X = new X_Wing (1,'Res', 20, 20, 2, 'true', 100, 100);
 $T = new TIE_Fighter(1,'Res', 20, 20, 2);
 
 $X->reparar();
-$T->reparar();
+$T->escollir_accio($X);
 
 
 ?>
