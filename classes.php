@@ -63,6 +63,14 @@ class X_Wing extends Casa_estelar{
         return $this->estat_escut;    
     }
 
+    public function getR2d2 (){
+        return $this->R2D2_Incorporat;    
+    }
+
+    public function setR2d2($R2D2_Incorporat){
+        $this->R2D2_Incorporat=$R2D2_Incorporat;
+    }
+
     public function setEscut($estat_escut){
         $this->estat_escut=$estat_escut;
     }
@@ -109,10 +117,8 @@ class TIE_Fighter extends Casa_estelar{
 
         if ($randomACtion == 1 ){ 
             $this->reparar();
-            echo "reparar";
         }else{
             $this->disparar($enemy);
-            echo "disparar";
         }
     }
 
