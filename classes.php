@@ -14,6 +14,15 @@ class Casa_estelar {
         $this->forsa_atac = $forsa_atac;
     }
     
+
+    public function getNumSerie (){
+        return $this->numero_serie;
+    }
+
+    public function setNumSerie($numero_serie){
+        return $this->numero_serie = $numero_serie;
+    }
+
     public function getVida (){
         return $this->vida;    
     }
