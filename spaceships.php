@@ -1,5 +1,5 @@
 <?php
-    include ('classes.php');
+    include_once ('classes.php');
 
     $tArray = [];
     for ($i = 0; $i < 5; $i++) {
@@ -35,7 +35,8 @@
     array_push($infoArray, $X->getR2d2());
     array_push($infoArray, date("Y-m-d H:i:s"));
     array_push($infoArray, count($tArray));
-
+ 
+    session_start();
 
     $_SESSION["information"] = $infoArray;
     

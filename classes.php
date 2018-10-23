@@ -133,11 +133,25 @@ class TIE_Fighter extends Casa_estelar{
 
 }
 
-$X = new X_Wing (1,'Res', 20, 20, 2, 'true', 100, 100);
-$T = new TIE_Fighter(1,'Res', 20, 20, 2);
+//$T->escollir_accio($X);
 
-$X->reparar();
-$T->escollir_accio($X);
 
+include_once('spaceships.php');
+$session_enable = false;
+if(empty($_SESSION['welcome']) && empty($_SESSION['information'])) {
+   $session_enable = false;
+} else {
+    $session_enable = true;
+}
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(test_input($_POST["Shoot"])){
+        $X->disparar($enemy);
+    } else {
+        $X->reparar();
+    }
+  }
 
 ?>
