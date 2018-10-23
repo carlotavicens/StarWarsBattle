@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 </head>
     <?php
+    session_start();
         $numeroDeSerie = "";
         $wantR2d2 = false;
     ?>
@@ -41,7 +42,7 @@
                             </div>
                         </div>
                         <div class="form-1-textarea">
-                            <textarea name="" id="" cols="30" rows="10"><?php echo $_SESSION["welcome"];?>></textarea>
+                            <textarea name="" id="" cols="30" rows="10"><?php var_dump($_SESSION["information"]);?>></textarea>
                         </div>
                     </form>
                 </div>
