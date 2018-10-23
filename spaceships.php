@@ -1,9 +1,8 @@
 <?php
-session_start();
     include ('classes.php');
 
     $tArray = [];
-    for ($i = 0; $i <= 5; $i++) {
+    for ($i = 0; $i < 5; $i++) {
         $T = new TIE_Fighter($i+1,'Res', 20, 20, 2);
         array_push($tArray, $T);
     }
@@ -29,10 +28,20 @@ session_start();
     $X = new X_Wing ($numSerie,'Res', 20, 20, 2, $r2d2, 100, 100);
 
     session_start();
+
+    $infoArray = [];
+
+    array_push($infoArray, $X->getNumSerie);
+    array_push($infoArray, $X->getR2d2());
+    array_push($infoArray, date("Y-m-d H:i:s"));
+    array_push($infoArray, count($tArray));
+
+
+    $_SESSION["information"] = $infoArray;
     
     $_SESSION["welcome"] = "Welcome traveller!";
 
-    header ("Location: index.html");
+    header ("Location: index.php");
 
 
 ?>
