@@ -126,6 +126,7 @@ class TIE_Fighter extends Casa_estelar{
 
         if ($randomACtion == 1 ){ 
             $this->reparar();
+            echo($X->getVida());
         }else{
             $this->disparar($enemy);
         }
@@ -135,23 +136,6 @@ class TIE_Fighter extends Casa_estelar{
 
 //$T->escollir_accio($X);
 
-
-include_once('spaceships.php');
-$session_enable = false;
-if(empty($_SESSION['welcome']) && empty($_SESSION['information'])) {
-   $session_enable = false;
-} else {
-    $session_enable = true;
-}
-
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(test_input($_POST["Shoot"])){
-        $X->disparar($enemy);
-    } else {
-        $X->reparar();
-    }
-  }
+header ("Location: index.php");
 
 ?>

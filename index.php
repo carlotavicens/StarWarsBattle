@@ -32,20 +32,22 @@
             </form>
             <div class="form-container">
                 <div class="form-1-container">
-                    <form action="./classes.php" method="post">
+                    <form action="./shootRepair.php" method="post">
                         <div class="actions-container">
                             <div class="shoot-container">
-                                <input type="submit"  class="button-shoot" name="Shoot" />
-                               
+                                <input type="submit"  class="button-shoot" name="Shoot">
                             </div>
                             <div class="repair-container">
-                                <input type="submit" class="button-repair" name="Repair" />
+                                <input type="submit" class="button-repair" name="Repair">
                             </div>
                         </div>
                         <div class="form-1-textarea">
                             <textarea name="" id="" cols="30" rows="10"><?php
                                 if(isset($_SESSION["welcome"])){
                                     echo($_SESSION["welcome"]);
+                                }
+                                if(isset($_SESSION["jugador"])){
+                                    var_dump($_SESSION["jugador"]);
                                 }?>
                             </textarea>
                         </div>
