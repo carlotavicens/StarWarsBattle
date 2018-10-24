@@ -31,7 +31,7 @@
 
     $infoArray = [];
 
-    array_push($infoArray, $X->getNumSerie);
+    array_push($infoArray, $X->getNumSerie());
     array_push($infoArray, $X->getR2d2());
     array_push($infoArray, date("Y-m-d H:i:s"));
     array_push($infoArray, count($tArray));

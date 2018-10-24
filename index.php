@@ -42,6 +42,9 @@
                             </div>
                         </div>
                         <div class="form-1-textarea">
+<<<<<<< HEAD
+                            <textarea name="" id="" cols="30" rows="10"><?php echo $_SESSION["welcome"];?>></textarea>
+=======
                             <textarea name="" id="" cols="30" rows="10"><?php
                                 if(isset($_SESSION["welcome"])){
                                     echo($_SESSION["welcome"]);
@@ -50,6 +53,7 @@
                                     var_dump($_SESSION["jugador"]);
                                 }?>
                             </textarea>
+>>>>>>> 6e09d68dc1fa6ee113e3562b78c207c96299e36d
                         </div>
                     </form>
                 </div>
