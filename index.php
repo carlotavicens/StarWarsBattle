@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="form-1-textarea">
-                            <textarea name="" id="" cols="30" rows="10"><?php var_dump($_SESSION["information"]);?>></textarea>
+                            <textarea name="" id="" cols="30" rows="10"><?php echo $_SESSION["welcome"];?>></textarea>
                         </div>
                     </form>
                 </div>
