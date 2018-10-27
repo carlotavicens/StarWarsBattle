@@ -146,6 +146,9 @@ if(empty($_SESSION['welcome']) && empty($_SESSION['information'])) {
 
 
 
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(test_input($_POST["Shoot"])){
         $X->disparar($enemy);
