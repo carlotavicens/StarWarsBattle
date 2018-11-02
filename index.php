@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 </head>
     <?php
+        require_once('classes.php');
         session_start();
         $numeroDeSerie = "";
         $wantR2d2 = false;
@@ -32,21 +33,35 @@
             </form>
             <div class="form-container">
                 <div class="form-1-container">
-                    <form action="./classes.php" method="post">
+                    <form action="./shootRepair.php" method="post">
                         <div class="actions-container">
                             <div class="shoot-container">
-                                <input type="submit"  class="button-shoot" name="Shoot" />
-                               
+                                <input type="submit" id="shoot" class="button-shoot" name="Shoot">
                             </div>
                             <div class="repair-container">
-                                <input type="submit" class="button-repair" name="Repair" />
+                                <input type="submit" id="repair" class="button-repair" name="Repair">
                             </div>
                         </div>
                         <div class="form-1-textarea">
                             <textarea name="" id="" cols="30" rows="10"><?php
                                 if(isset($_SESSION["welcome"])){
-                                    echo($_SESSION["welcome"]);
-                                }?>
+                                    echo($_SESSION["welcome"] . "\n");
+                                }
+                                if(isset($_SESSION["jugadorobj"])){
+                                    $player = $_SESSION["jugadorobj"];
+                                    echo "Vida restante del jugador: " . $player->getVida() . "\n";
+                                    echo "Escudo restante del jugador: " . $player->getEscut() . "\n";
+                                }
+                                if(isset($_SESSION["enemies"])){
+                                    $enemigos = $_SESSION["enemies"];
+                                    echo "Enemigos restantes: " . sizeof($enemigos) . "\n";
+                                    echo "Vida enemigo: " . $enemigos[0]->getVida() . "\n";
+                                }
+                                if(isset($_SESSION["win"])){
+                                    $win = $_SESSION["win"];
+                                    echo $win;
+                                }
+                                ?>
                             </textarea>
                         </div>
                     </form>
@@ -68,6 +83,10 @@
             <img src="https://i.gifer.com/7V5.gif" alt="" height="130px" width="130px">
         </div>
     </section>
+    <script>
+        document.getElementById("shoot").value = "Disparar";
+        document.getElementById("repair").value = "Reparar";
+    </script>
 </body>
 
 </html>

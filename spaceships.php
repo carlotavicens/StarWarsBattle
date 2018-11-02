@@ -1,5 +1,5 @@
 <?php
-    include_once ('classes.php');
+    include ("classes.php");
 
     $tArray = [];
     for ($i = 0; $i < 5; $i++) {
@@ -25,8 +25,8 @@
         return $data;
       }
 
-    $X = new X_Wing ($numSerie,'Res', 20, 20, 2, $r2d2, 100, 100);
-
+    $X = new X_Wing ($numSerie,'Res', 20, 20, 2, $r2d2, 50, 30);
+    $arrayX = get_object_vars($X);
     session_start();
 
     $infoArray = [];
@@ -36,13 +36,11 @@
     array_push($infoArray, date("Y-m-d H:i:s"));
     array_push($infoArray, count($tArray));
  
-    session_start();
-
-    $_SESSION["information"] = $infoArray;
-    
     $_SESSION["welcome"] = "Welcome traveller!";
+    $_SESSION["enemies"] = $tArray;
+    $_SESSION["information"] = $infoArray;
+    $_SESSION['jugadorobj'] = $X;
 
     header ("Location: index.php");
-
 
 ?>

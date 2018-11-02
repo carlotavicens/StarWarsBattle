@@ -1,10 +1,10 @@
 <?php
 class Casa_estelar {
-    private $numero_serie;
-    private $fabricant;
-    protected $vida;
-    protected $vida_max;
-    private $forsa_atac;
+    public $numero_serie;
+    public $fabricant;
+    public $vida;
+    public $vida_max;
+    public $forsa_atac;
 
     public function __construct ($numero_serie, $fabricant, $vida, $vida_max, $forsa_atac){
         $this->numero_serie = $numero_serie;
@@ -35,20 +35,26 @@ class Casa_estelar {
         $classname = (get_class($casa_estelar));
         if ($classname === 'X_Wing'){
             $casa_estelar->estat_escut = $casa_estelar->estat_escut - $this->forsa_atac*(rand(1,10));
-            if ($casa_estelar->estat_escut < 0){
+            if ($casa_estelar->estat_escut <= 0){
                 $vidas = $casa_estelar->getVida();
                 $vidas = $vidas + $casa_estelar->estat_escut;
                 $casa_estelar->setVida($vidas);
-            }
-            if ($casa_estelar->vida <=0){
-                echo "Game Over";
-            }          
+
+                if ($casa_estelar->getVida() < 0) {
+                    $casa_estelar->setVida(0);
+                }
+
+                if ($casa_estelar->getEscut() < 0) {
+                    $casa_estelar->setEscut(0);
+                }
+            }        
         } else {
             $vidas= $casa_estelar->getVida();
             $vidas = $vidas - $this->forsa_atac*(rand(1,10));
             $casa_estelar->setVida($vidas);
-            if ($casa_estelar->vida <=0){
-                echo "Winner";
+
+            if ($casa_estelar->getVida() < 0) {
+                $casa_estelar->setVida(0);
             }
         }
     }
@@ -56,9 +62,9 @@ class Casa_estelar {
 
 
 class X_Wing extends Casa_estelar{
-    protected $R2D2_Incorporat;
-    protected $escut_maxim=100;
-    protected $estat_escut;
+    public $R2D2_Incorporat;
+    public $escut_maxim=100;
+    public $estat_escut;
     
     public function __construct($numero_serie, $fabricant, $vida, $vida_max, $forsa_atac, $R2D2_Incorporat,  $escut_maxim, $estat_escut){
         $this->R2D2_Incorporat = $R2D2_Incorporat;
@@ -96,15 +102,21 @@ class X_Wing extends Casa_estelar{
         if($this->R2D2_Incorporat == 'true'){
             $vidas= $this->getVida();
             if ($vidas<$this->vida_max){
-                $vidas= $vidas+ rand(1,200);
-                if ($vidas>$this->vida_max){
-                    $this->setVida($this->vida_max);
-                    $escut = $this->getEscut();
-                    $escut = $escut + ($vidas-$vida_max);
+                $vidas= $vidas+ rand(1,20);
+                if($vidas + $this->getVida() > $this->vida_max) {
+                    $this->setVida(20);
+                } else {
+                    $this->setVida($vidas);
+                }
+            } else {
+                $escut = $this->getEscut();
+                $escut = $escut + (5);
+                if ($escut + $this->getEscut() > $this->escut_maxim) {
+                    $this->setEscut(30);
+                } else {
                     $this->setEscut($escut);
                 }
             }
-
         }
     }
 }
@@ -115,9 +127,9 @@ class TIE_Fighter extends Casa_estelar{
     }
 
     public function reparar(){
-        $vidas= $this->getVida();
-            if ($vidas<$this->vida_max){
-                $vidas= $vidas+rand(1,200);
+        $vida = $this->getVida();
+            if ($vida<$this->vida_max){
+                $this->vida = $this->vida + 5;
             }
     }
 
@@ -130,31 +142,6 @@ class TIE_Fighter extends Casa_estelar{
             $this->disparar($enemy);
         }
     }
-
 }
-
-//$T->escollir_accio($X);
-
-
-include_once('spaceships.php');
-$session_enable = false;
-if(empty($_SESSION['welcome']) && empty($_SESSION['information'])) {
-   $session_enable = false;
-} else {
-    $session_enable = true;
-}
-
-
-
-
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(test_input($_POST["Shoot"])){
-        $X->disparar($enemy);
-    } else {
-        $X->reparar();
-    }
-  }
 
 ?>
