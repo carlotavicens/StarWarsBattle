@@ -24,19 +24,7 @@ $player = $_SESSION["jugadorobj"];
                 }
                 $_SESSION['jugadorobj'] = $player;
                 $_SESSION['enemies'] = $enemigos;
-            } else {
-                if(sizeof($enemigos) <= 0) {
-                    $winner = "Congratulations, you've won the game!";
-                    $_SESSION['win'] = $winner;
-                    unset($_SESSION["enemies"]);
-                    unset($_SESSION["jugadorobj"]);
-                } else if ($player->getVida() == 0) {
-                    $winner = "oh damn, you've lost the game!";
-                    $_SESSION['win'] = $winner;
-                    unset($_SESSION["enemies"]);
-                    unset($_SESSION["jugadorobj"]);
-                }
-            } 
+            }
         } else if (!empty($_POST["Repair"])) {
             if(sizeof($enemigos) > 0 && $player->getVida() >= 0) {
                 $player->reparar();

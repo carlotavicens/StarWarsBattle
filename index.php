@@ -14,6 +14,59 @@
         session_start();
         $numeroDeSerie = "";
         $wantR2d2 = false;
+
+        $enemigos = $_SESSION['enemies'];
+        $player = $_SESSION["jugadorobj"];
+        $infoArray = $_SESSION["information"];
+        $fiPartida = date("Y-m-d H:i:s");
+        $numSerie = $infoArray[0];
+
+
+
+        $servername = "localhost";
+        $username = "mamp";
+        $password = "";
+        $dbName = "StarWarsBattle";
+
+
+        if(sizeof($enemigos) <= 0) {
+            $conn = mysqli_connect($servername, $username, $password, $dbName);
+            $sql = "INSERT INTO history (numSerie, r2d2, inici, fi)
+            VALUES ('$numSerie', '$infoArray[1]', '$infoArray[2]', '$fiPartida')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $winner = "Congratulations, you've won the game!";
+            $_SESSION['win'] = $winner;
+            unset($_SESSION["enemies"]);
+            unset($_SESSION["jugadorobj"]);
+            unset($_SESSION["information"]);
+
+            $conn->close();
+        } else if ($player->getVida() == 0) {
+            $conn = mysqli_connect($servername, $username, $password, $dbName);
+            $sql = "INSERT INTO history (numSerie, r2d2, inici, fi)
+            VALUES ('$numSerie', '$infoArray[1]', '$infoArray[2]', '$fiPartida')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+
+            $winner = "oh damn, you've lost the game!";
+            $_SESSION['win'] = $winner;
+            unset($_SESSION["enemies"]);
+            unset($_SESSION["jugadorobj"]);
+            unset($_SESSION["information"]);
+
+            $conn->close();
+        }
     ?>
 <body>
     <section class="container">
@@ -67,14 +120,16 @@
                     </form>
                 </div>
                 <div class="form-2-container">
+                <form action="./history.php" method="post">
                     <div class="history-container">
                         <div class="show-history">
-                            <button>Show history</button>
+                            <input type="submit" id="show" class="button-shoot" name="Show">
                         </div>
                         <div class="delete-history">
-                            <button>Delete history</button>
+                            <input type="submit" id="delete" class="button-shoot" name="Delete">
                         </div>
                     </div>
+                    </form>
                     <div class="form-2-textarea">
                         <textarea name="" id="" cols="30" rows="10"></textarea>
                     </div>
@@ -86,6 +141,8 @@
     <script>
         document.getElementById("shoot").value = "Disparar";
         document.getElementById("repair").value = "Reparar";
+        document.getElementById("show").value = "Mostrar historial";
+        document.getElementById("delete").value = "Eliminar historial";
     </script>
 </body>
 
