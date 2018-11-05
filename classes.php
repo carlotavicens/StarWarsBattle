@@ -1,5 +1,5 @@
 <?php
-class Casa_estelar {
+class Casa_estelar { //Creamos la clase casa estelar donde heredaran tanto XWING como TIEFIGHTER
     public $numero_serie;
     public $fabricant;
     public $vida;
@@ -31,7 +31,7 @@ class Casa_estelar {
         $this->vida=$vida;
     }
   
-    public function disparar ($casa_estelar){
+    public function disparar ($casa_estelar){  //Función disparar.
         $classname = (get_class($casa_estelar));
         if ($classname === 'X_Wing'){
             $casa_estelar->estat_escut = $casa_estelar->estat_escut - $this->forsa_atac*(rand(1,10));
@@ -98,7 +98,7 @@ class X_Wing extends Casa_estelar{
         $this->vida=$vida;
     }
 
-    public function reparar(){
+    public function reparar(){ //Función reparar que solo funciona si disponemos de R2D2
         if($this->R2D2_Incorporat == 'true'){
             $vidas= $this->getVida();
             if ($vidas<$this->vida_max){
@@ -111,7 +111,7 @@ class X_Wing extends Casa_estelar{
             } else {
                 $escut = $this->getEscut();
                 $escut = $escut + (5);
-                if ($escut + $this->getEscut() > $this->escut_maxim) {
+                if ($escut + $this->getEscut() > $this->escut_maxim) { //Si la reparación supera el máximo de nuestro escudo se asignara el máximo. 
                     $this->setEscut(30);
                 } else {
                     $this->setEscut($escut);
@@ -133,8 +133,8 @@ class TIE_Fighter extends Casa_estelar{
             }
     }
 
-    public function escollir_accio($enemy){
-        $randomACtion = rand(0,1);
+    public function escollir_accio($enemy){ //Función aleatoria que realiza el enemigo en base a nuestris movimientos. 
+        $randomACtion = rand(0,1);          // Siempre que disparemos o reparemos se llamará a esta función.
 
         if ($randomACtion == 1 ){ 
             $this->reparar();

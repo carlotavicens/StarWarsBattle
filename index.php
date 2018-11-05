@@ -15,7 +15,7 @@
         $numeroDeSerie = "";
         $wantR2d2 = false;
 
-        $enemigos = $_SESSION['enemies'];
+        $enemigos = $_SESSION['enemies'];       //Cogemos todas la variables de sesión y las guardamos en variables del fichero.
         $player = $_SESSION["jugadorobj"];
         $infoArray = $_SESSION["information"];
         $fiPartida = date("Y-m-d H:i:s");
@@ -23,41 +23,40 @@
 
 
 
-        $servername = "localhost";
+        $servername = "localhost";  //Declaramos el contenido de las variables para poder realizar la conexión SQL. 
         $username = "mamp";
         $password = "";
         $dbName = "StarWarsBattle";
 
 
-        if(sizeof($enemigos) <= 0) {
+        if(sizeof($enemigos) <= 0) {                                                    //Si no hay enemigos ganamos la partida y añadimos los datos en la BBDD.
             $conn = mysqli_connect($servername, $username, $password, $dbName);
             $sql = "INSERT INTO history (numSerie, r2d2, inici, fi)
             VALUES ('$numSerie', '$infoArray[1]', '$infoArray[2]', '$fiPartida')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
+                // echo "New record created successfully";
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                // echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
-            $winner = "Congratulations, you've won the game!";
+            $winner = "Congratulations, you've won the game!"; //Además añadimos una variable de sesión con la condición de victoria. 
             $_SESSION['win'] = $winner;
             unset($_SESSION["enemies"]);
             unset($_SESSION["jugadorobj"]);
             unset($_SESSION["information"]);
 
             $conn->close();
-        } else if ($player->getVida() == 0) {
+        } else if ($player->getVida() == 0) {               //Si perdemos repetimos lo comentado anteriormente pero en otras cicunstancias. 
             $conn = mysqli_connect($servername, $username, $password, $dbName);
             $sql = "INSERT INTO history (numSerie, r2d2, inici, fi)
             VALUES ('$numSerie', '$infoArray[1]', '$infoArray[2]', '$fiPartida')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
+                // echo "New record created successfully";
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                // echo "Error: " . $sql . "<br>" . $conn->error;
             }
-
 
             $winner = "oh damn, you've lost the game!";
             $_SESSION['win'] = $winner;
@@ -96,7 +95,7 @@
                             </div>
                         </div>
                         <div class="form-1-textarea">
-                            <textarea name="" id="" cols="30" rows="10"><?php
+                            <textarea name="" id="" cols="30" rows="10"><?php           //En función de las variables de sesión mostramos el contenido en vivo.
                                 if(isset($_SESSION["welcome"])){
                                     echo($_SESSION["welcome"] . "\n");
                                 }
@@ -129,10 +128,19 @@
                             <input type="submit" id="delete" class="button-shoot" name="Delete">
                         </div>
                     </div>
-                    </form>
                     <div class="form-2-textarea">
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea name="" id="" cols="30" rows="10">
+                        <?php
+                        if(isset($_SESSION["historyArray"])){           //Cogemos toda la información del select de history y la mostramos por pantalla en el textarea.
+                            $historyArray = $_SESSION["historyArray"];
+                            for ($i=0; $i<count($historyArray); $i++) {
+                                echo $historyArray[$i];
+                            }
+                        }
+                        ?>
+                        </textarea>
                     </div>
+                    </form>
                 </div>
             </div>
             <img src="https://i.gifer.com/7V5.gif" alt="" height="130px" width="130px">
