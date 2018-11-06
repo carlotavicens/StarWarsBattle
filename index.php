@@ -143,7 +143,6 @@
                     </form>
                 </div>
             </div>
-            <img src="https://i.gifer.com/7V5.gif" alt="" height="130px" width="130px">
         </div>
     </section>
     <script>

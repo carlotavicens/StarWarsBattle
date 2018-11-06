@@ -50,7 +50,7 @@ class Casa_estelar { //Creamos la clase casa estelar donde heredaran tanto XWING
             }        
         } else {
             $vidas= $casa_estelar->getVida();
-            $vidas = $vidas - $this->forsa_atac*(rand(1,10));
+            $vidas = $vidas - $this->forsa_atac*(rand(1,5));
             $casa_estelar->setVida($vidas);
 
             if ($casa_estelar->getVida() < 0) {
